@@ -12,7 +12,7 @@ const Navabar = () => {
   const handleLogout = async () => {
     try {
       await axios.post(
-        "http://localhost:3000/logout",
+        "/api/logout",
         {},
         { withCredentials: true }
       );

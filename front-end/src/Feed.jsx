@@ -12,7 +12,7 @@ const Feed = () => {
     if (feed?.length > 0) return;
 
     try {
-      const res = await axios.get("http://localhost:3000/feed", {
+      const res = await axios.get("/api/feed", {
         withCredentials: true,
       });
 
