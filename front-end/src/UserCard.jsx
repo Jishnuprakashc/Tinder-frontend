@@ -2,6 +2,7 @@ import axios from "axios";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { removeFeed } from "./utils/feedUser";
+import { BASE_URL } from "./utils/constants";
 
 const UserCard = ({ user }) => {
   const { _id, firstName, lastName, photoUrl, about, age, gender } = user;
@@ -9,7 +10,7 @@ const UserCard = ({ user }) => {
  const handleSendRequest = async (status, userId) => {
   try {
     const res = await axios.post(
-      `/api/request/send/${status.toLowerCase()}/${userId}`
+      `${BASE_URL}/request/send/${status}/${userId}`
 ,
       {},
       { withCredentials: true }
@@ -39,13 +40,13 @@ const UserCard = ({ user }) => {
           <div className="card-actions justify-end">
             <button
               className="btn btn-error"
-              onClick={() => handleSendRequest("Ignored", _id)}
+              onClick={() => handleSendRequest("ignored", _id)}
             >
               Ignore
             </button>
             <button
               className="btn btn-success"
-              onClick={() => handleSendRequest("Interested", _id)}
+              onClick={() => handleSendRequest("interested", _id)}
             >
               Interested
             </button>

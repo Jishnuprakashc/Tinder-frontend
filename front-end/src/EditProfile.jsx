@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import UserCard from "./UserCard";
 import axios from "axios";
 import { useDispatch } from "react-redux";
+import { BASE_URL } from "./utils/constants";
 
 const EditProfile = ({ user }) => {
   const [firstName, setFirstName] = useState(user.firstName);
@@ -17,7 +18,7 @@ const EditProfile = ({ user }) => {
   const handlesave = async () => {
     try {
       const res = await axios.put(
-        "/api/profile/edit",
+        `${BASE_URL}/profile/edit`,
         { firstName, lastName, photoUrl, age, gender, about },
         { withCredentials: true }
       );

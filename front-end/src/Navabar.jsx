@@ -3,6 +3,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { removeUser } from "./utils/userSlice";
+import { BASE_URL } from "./utils/constants";
 
 const Navabar = () => {
   const user = useSelector((store) => store.user);
@@ -12,7 +13,7 @@ const Navabar = () => {
   const handleLogout = async () => {
     try {
       await axios.post(
-        "/api/logout",
+        `${BASE_URL}/logout`,
         {},
         { withCredentials: true }
       );
@@ -60,6 +61,11 @@ const Navabar = () => {
                 <li>
                   <Link to="/connections" className="justify-between">
                     Connections
+                  </Link>
+                </li>
+                 <li>
+                  <Link to="/premium" className="justify-between">
+                    Premium
                   </Link>
                 </li>
                 <li>

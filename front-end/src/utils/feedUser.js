@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-
 const feedUser = createSlice({
   name: "feed",
   initialState: [],

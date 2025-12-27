@@ -3,7 +3,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { addUser } from "./utils/userSlice";
 import { useNavigate } from "react-router-dom";
-
+import { BASE_URL } from "./utils/constants";
 const Login = () => {
   const [emailId, setEmailId] = useState("@gmail.com");
   const [password, setPassword] = useState("");
@@ -17,7 +17,7 @@ const Login = () => {
   const handlelogin = async () => {
     try {
       const res = await axios.post(
-        "/api/login",
+        `${BASE_URL}/login`,
         {
           emailId,
           password,
@@ -35,7 +35,7 @@ const Login = () => {
   const handleSignup = async () => {
     try {
       const res = await axios.post(
-        "/api/signup",
+        `${BASE_URL}/signup`,
         { firstName, lastName, emailId, password },
         { withCredentials: true }
       );
@@ -118,5 +118,4 @@ const Login = () => {
     </div>
   );
 };
-
 export default Login;

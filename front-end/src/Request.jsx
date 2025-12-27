@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addrequest, removeRequests } from "./utils/requestSlice";
+import { BASE_URL } from "./utils/constants";
 
 const Request = () => {
   const requests = useSelector((store) => store.request);
@@ -10,7 +11,7 @@ const Request = () => {
   const reviewRequests = async (status, _id) => {
     try {
       const res = await axios.post(
-        "/api/request/review/" + status + "/" + _id,
+        `${BASE_URL}/request/review/` + status + "/" + _id,
         {},
         { withCredentials: true }
       );
@@ -23,7 +24,7 @@ const Request = () => {
   const RequestConnection = async () => {
     try {
       const res = await axios.get(
-        "/api/user/requests/received",
+        `${BASE_URL}/user/requests/received`,
         { withCredentials: true }
       );
       console.log(res.data);
@@ -45,8 +46,7 @@ const Request = () => {
   if (requests.length === 0) {
     return <h1 className="text-center mt-10">No requests Found</h1>;
   }
-
-  return (
+    return (
     <div className="max-w-2xl mx-auto">
       <h1 className="text-3xl font-bold text-center my-10">Requests</h1>
 
@@ -93,5 +93,4 @@ const Request = () => {
     </div>
   );
 };
-
 export default Request;

@@ -2,6 +2,8 @@ import axios from "axios";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addconnections } from "./utils/connectionSlice";
+import { Link } from "react-router-dom";
+import { BASE_URL } from "./utils/constants";
 
 const Connections = () => {
   const connections = useSelector((store) => store.connection);
@@ -9,7 +11,7 @@ const Connections = () => {
 
   const fetchConnections = async () => {
     try {
-      const res = await axios.get("/api/user/connections", {
+      const res = await axios.get(`${BASE_URL}/user/connections`, {
         withCredentials: true,
       });
       dispatch(addconnections(res.data.data));
@@ -62,8 +64,12 @@ const Connections = () => {
                 <p className="mt-2 text-sm font-semibold">
                   {age}, {gender}
                 </p>
-              )}
+               )}
             </div>
+            <Link to={`/chat/${_id}`}>
+            <button className="btn btn-success">Chat</button>
+            </Link>
+             
           </div>
         );
       })}
